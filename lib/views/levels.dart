@@ -15,6 +15,7 @@ class LevelsScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.deepPurple.shade900,
             title: Text('Levels',style: TextStyle(color: Colors.cyanAccent)),
           ),
           body: Container(
@@ -42,24 +43,31 @@ class LevelsScreen extends StatelessWidget {
                   );
                 }
               },
-              child: Card(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Level ${cubit.levels[index].number}'),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(3, (i) => Icon(
-                              i < cubit.levels[index].score ~/ 3 ?
-                              Icons.star : Icons.star_border,
-                              size: 30,
-                            ),
+              child: SizedBox(
+                height: 100,
+                width: 70,
+                child: Card(
+          shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+              ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Level ${cubit.levels[index].number}'),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(3, (i) => Icon(
+                                i < cubit.levels[index].score ~/ 3 ?
+                                Icons.star : Icons.star_border,
+                                size: 30,
+                              ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                  color: cubit.levels[index].unlocked ? Colors.white : Colors.grey[500],
                 ),
-                color: cubit.levels[index].unlocked ? Colors.white : Colors.grey[500],
               ),
             ),
             ),
